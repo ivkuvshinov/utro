@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+// Aliases to avoid redeclaring globals from exercises.js
+var EX = window.STRETCH_DATA.EX;
+var SECTIONS = window.STRETCH_DATA.SECTIONS;
+var PROGRAM_30 = window.STRETCH_DATA.PROGRAM_30;
+var PROGRAM_40 = window.STRETCH_DATA.PROGRAM_40;
 // ===============================================================
 // Утренняя растяжка — main app logic
 // ===============================================================
 
-const { EX, SECTIONS, PROGRAM_30, PROGRAM_40 } = window.STRETCH_DATA;
+
 
 const STORAGE = {
   theme: 'stretch.theme',
@@ -14,7 +19,7 @@ const STORAGE = {
 
 const state = {
   duration: 30,                     // selected: 30 | 40
-  program: PROGRAM_30,
+  program: window.STRETCH_DATA.PROGRAM_30,
   currentIdx: 0,
   remaining: 0,
   totalElapsed: 0,
@@ -223,7 +228,7 @@ document.querySelectorAll('.duration-card').forEach(card => {
     document.querySelectorAll('.duration-card').forEach(c => c.classList.remove('active'));
     card.classList.add('active');
     state.duration = parseInt(card.dataset.duration, 10);
-    state.program = state.duration === 40 ? PROGRAM_40 : PROGRAM_30;
+    state.program = state.duration === 40 ? window.STRETCH_DATA.PROGRAM_40 : window.STRETCH_DATA.PROGRAM_30;
     localStorage.setItem(STORAGE.duration, state.duration);
   });
 });
@@ -231,7 +236,7 @@ document.querySelectorAll('.duration-card').forEach(card => {
 function restoreDuration() {
   const stored = parseInt(localStorage.getItem(STORAGE.duration) || '30', 10);
   state.duration = stored;
-  state.program = stored === 40 ? PROGRAM_40 : PROGRAM_30;
+  state.program = stored === 40 ? window.STRETCH_DATA.PROGRAM_40 : window.STRETCH_DATA.PROGRAM_30;
   document.querySelectorAll('.duration-card').forEach(c => {
     c.classList.toggle('active', parseInt(c.dataset.duration, 10) === stored);
   });
