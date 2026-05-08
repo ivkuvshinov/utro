@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 // ===============================================================
 // Утренняя растяжка — main app logic
 // ===============================================================
@@ -461,3 +462,5 @@ function init() {
 }
 
 init();
+
+}); // DOMContentLoaded
